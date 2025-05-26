@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIIELUXE - Luxury Makeup & Perfumes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f1e8;
+            color: #333;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #d4af37 0%, #f1e5ac 50%, #d4af37 100%);
+        }
+        
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .product-overlay {
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .booking-form input, .booking-form select, .booking-form textarea {
+            background-color: rgba(245, 241, 232, 0.8);
+        }
+        
+        .tracking-form input {
+            background-color: rgba(245, 241, 232, 0.8);
+        }
+        
+        .calendly-inline-widget {
+            min-height: 700px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .magazine-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendly-inline-widget {
+                min-height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-black text-gold-500 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/50x50" alt="ARIIELUXE Logo" class="h-10 w-10 rounded-full border border-gold-500" id="company-logo">
+                <h1 class="heading-font text-2xl font-bold text-gold-500">ARIIELUXE</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#products" class="text-gold-400 hover:text-white transition">Products</a>
+                <a href="#tracking" class="text-gold-400 hover:text-white transition">Order Tracking</a>
+                <a href="#booking" class="text-gold-400 hover:text-white transition">Makeup Sessions</a>
+                <a href="#about" class="text-gold-400 hover:text-white transition">About</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button class="text-gold-400 hover:text-white">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+                <button class="text-gold-400 hover:text-white relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-gold-500 text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                </button>
+                <button class="md:hidden text-gold-400">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden bg-black py-2 px-4 hidden" id="mobile-menu">
+            <a href="#products" class="block py-2 text-gold-400 hover:text-white">Products</a>
+            <a href="#tracking" class="block py-2 text-gold-400 hover:text-white">Order Tracking</a>
+            <a href="#booking" class="block py-2 text-gold-400 hover:text-white">Makeup Sessions</a>
+            <a href="#about" class="block py-2 text-gold-400 hover:text-white">About</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20 px-4">
+        <div class="container mx-auto text-center">
+            <h2 class="heading-font text-4xl md:text-6xl font-bold mb-4">Elevate Your Beauty</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Discover luxury makeup and exquisite perfumes for every occasion</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#products" class="bg-gold-500 hover:bg-gold-600 text-black font-bold py-3 px-6 rounded-full transition">Shop Now</a>
+                <a href="#booking" class="border-2 border-white hover:bg-white hover:text-black font-bold py-3 px-6 rounded-full transition">Book Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-16 px-4 bg-brown-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4 text-brown-800">Our Signature Collection</h2>
+                <div class="gold-gradient h-1 w-24 mx-auto mb-4"></div>
+                <p class="text-brown-600 max-w-2xl mx-auto">Curated selection of premium makeup and fragrances for both men and women</p>
+            </div>
+            
+            <div class="magazine-grid">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-brown-800">Noir Essence</h3>
+                            <span class="bg-gold-100 text-gold-800 text-xs font-bold px-2 py-1 rounded">Men</span>
+                        </div>
+                        <p class="text-brown-600 text-sm mb-4">A bold, woody fragrance with hints of leather and spice</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gold-600 font-bold">₦75,000</span>
+                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-brown-800">Luxe Radiance Palette</h3>
+                            <span class="bg-pink-100 text-pink-800 text-xs font-bold px-2 py-1 rounded">Women</span>
+                        </div>
+                        <p class="text-brown-600 text-sm mb-4">18 highly pigmented shades for day to night looks</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gold-600 font-bold">₦55,000</span>
+                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1615368144592-84a1eb473c25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-brown-800">Royal Oud</h3>
+                            <span class="bg-gold-100 text-gold-800 text-xs font-bold px-2 py-1 rounded">Unisex</span>
+                        </div>
+                        <p class="text-brown-600 text-sm mb-4">A luxurious blend of oud, amber, and vanilla notes</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gold-600 font-bold">₦120,000</span>
+                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1526947425960-945eb6e9a4a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-brown-800">Velvet Matte Lipstick</h3>
+                            <span class="bg-pink-100 text-pink-800 text-xs font-bold px-2 py-1 rounded">Women</span>
+                        </div>
+                        <p class="text-brown-600 text-sm mb-4">Long-lasting, highly pigmented matte lipstick</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gold-600 font-bold">₦25,000</span>
+                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-brown-800">Citrus Splash</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Men</span>
+                        </div>
+                        <p class="text-brown-600 text-sm mb-4">Fresh citrus fragrance with marine notes</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gold-600 font-bold">₦65,000</span>
+                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-brown-800">Luminous Foundation</h3>
+                            <span class="bg-pink-100 text-pink-800 text-xs font-bold px-2 py-1 rounded">Women</span>
+                        </div>
+                        <p class="text-brown-600 text-sm mb-4">Weightless, buildable coverage with radiant finish</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gold-600 font-bold">₦45,000</span>
+                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-brown-800 text-brown-800 hover:bg-brown-800 hover:text-white font-bold py-3 px-8 rounded-full transition">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Tracking -->
+    <section id="tracking" class="py-16 px-4 bg-brown-800 text-white">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4">Track Your Order</h2>
+                <div class="gold-gradient h-1 w-24 mx-auto mb-4"></div>
+                <p class="text-gold-200 max-w-2xl mx-auto">Enter your order details below to check the status of your purchase</p>
+            </div>
+            
+            <div class="bg-brown-900 rounded-lg shadow-xl p-8">
+                <form class="tracking-form space-y-6">
+                    <div>
+                        <label for="order-number" class="block text-gold-400 mb-2">Order Number</label>
+                        <input type="text" id="order-number" class="w-full px-4 py-3 rounded border border-brown-700 focus:outline-none focus:ring-2 focus:ring-gold-500" placeholder="e.g. ARIIE123456">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gold-400 mb-2">Email Address</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 rounded border border-brown-700 focus:outline-none focus:ring-2 focus:ring-gold-500" placeholder="your@email.com">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-black font-bold py-3 px-4 rounded transition">Track Order</button>
+                </form>
+                
+                <div class="mt-8 pt-8 border-t border-brown-700 hidden" id="tracking-results">
+                    <h3 class="heading-font text-xl font-bold mb-4">Order Status</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gold-500 flex items-center justify-center mr-4">
+                                <i class="fas fa-check text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Order Placed</h4>
+                                <p class="text-gold-300 text-sm">June 15, 2023 at 2:30 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gold-500 flex items-center justify-center mr-4">
+                                <i class="fas fa-check text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Order Processed</h4>
+                                <p class="text-gold-300 text-sm">June 16, 2023 at 9:15 AM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gold-500 flex items-center justify-center mr-4">
+                                <i class="fas fa-check text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Shipped</h4>
+                                <p class="text-gold-300 text-sm">June 17, 2023 at 11:45 AM</p>
+                                <p class="text-gold-300 text-sm">Tracking #: ARIIE78901234</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-500 flex items-center justify-center mr-4">
+                                <i class="fas fa-truck text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">In Transit</h4>
+                                <p class="text-gold-300 text-sm">Expected delivery: June 20, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Makeup Session Booking with Calendly -->
+    <section id="booking" class="py-16 px-4 bg-brown-100">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4 text-brown-800">Book a Makeup Session</h2>
+                <div class="gold-gradient h-1 w-24 mx-auto mb-4"></div>
+                <p class="text-brown-600 max-w-2xl mx-auto">Our professional makeup artists will help you achieve your desired look for any occasion</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 booking-form">
+                        <h3 class="heading-font text-2xl font-bold mb-6 text-brown-800">Schedule Your Session</h3>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-brown-700 mb-1">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-brown-700 mb-1">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-brown-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                            </div>
+                            
+                            <div>
+                                <label for="session-type" class="block text-brown-700 mb-1">Session Type</label>
+                                <select id="session-type" class="w-full px-4 py-2 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                                    <option value="">Select a session type</option>
+                                    <option value="bridal">Bridal Makeup (₦75,000)</option>
+                                    <option value="special-occasion">Special Occasion (₦50,000)</option>
+                                    <option value="editorial">Editorial/Photoshoot (₦100,000)</option>
+                                    <option value="personal-lesson">Personal Makeup Lesson (₦60,000)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="location" class="block text-brown-700 mb-1">Location</label>
+                                <select id="location" class="w-full px-4 py-2 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                                    <option value="">Select location</option>
+                                    <option value="studio">ARIIELUXE Studio (Lagos Island)</option>
+                                    <option value="onsite">On-site (Your Location) - Additional ₦15,000</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="notes" class="block text-brown-700 mb-1">Special Requests</label>
+                                <textarea id="notes" rows="3" class="w-full px-4 py-2 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500"></textarea>
+                            </div>
+                            
+                            <button type="button" id="calendly-btn" class="w-full bg-brown-800 hover:bg-black text-white font-bold py-3 px-4 rounded transition">Select Date & Time</button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-brown-800 p-8">
+                        <h3 class="heading-font text-2xl font-bold mb-6 text-gold-400">Available Sessions</h3>
+                        <p class="text-gold-200 mb-6">After completing the form, select your preferred date and time using our booking system.</p>
+                        
+                        <!-- Calendly inline widget -->
+                        <div id="calendly-widget" class="hidden">
+                            <div class="calendly-inline-widget" data-url="https://calendly.com/your-ariieluxe-booking" style="min-width:320px;"></div>
+                            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        </div>
+                        
+                        <div id="booking-instructions" class="text-gold-200">
+                            <h4 class="font-bold mb-2">Booking Instructions:</h4>
+                            <ol class="list-decimal pl-5 space-y-2">
+                                <li>Fill out the form with your details</li>
+                                <li>Click "Select Date & Time" button</li>
+                                <li>Choose your preferred appointment slot</li>
+                                <li>Complete your booking confirmation</li>
+                            </ol>
+                            
+                            <div class="mt-6 p-4 bg-brown-900 rounded-lg">
+                                <h4 class="font-bold mb-2">Cancellation Policy:</h4>
+                                <p class="text-sm">Please provide at least 48 hours notice for cancellations or rescheduling to avoid a 50% fee.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 bg-black text-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4">About ARIIELUXE</h2>
+                <div class="gold-gradient h-1 w-24 mx-auto mb-4"></div>
+                <p class="text-gold-200 max-w-3xl mx-auto">Where luxury meets beauty in perfect harmony</p>
+            </div>
+            
+            <div class="md:flex items-center gap-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1596704017250-3f8b5c1a5b3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="ARIIELUXE Store" class="rounded-lg shadow-xl w-full">
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h3 class="heading-font text-2xl font-bold mb-4 text-gold-400">Our Story</h3>
+                    <p class="mb-4">Founded in 2015, ARIIELUXE has become synonymous with luxury beauty products and exceptional service. Our mission is to provide high-quality makeup and fragrances that enhance your natural beauty while making you feel confident and empowered.</p>
+                    
+                    <h3 class="heading-font text-2xl font-bold mb-4 mt-8 text-gold-400">Our Promise</h3>
+                    <p class="mb-4">We carefully curate our collection to include only the finest products, free from harmful ingredients and tested for quality and performance. Our makeup artists and fragrance experts are dedicated to helping you find your perfect match.</p>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-2 text-gold-400">Visit Us</h4>
+                        <p>123 Luxury Avenue<br>Victoria Island, Lagos</p>
+                        
+                        <h4 class="font-bold mb-2 mt-4 text-gold-400">Contact</h4>
+                        <p>Phone: +234 812 345 6789<br>Email: info@ariieluxe.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 px-4 bg-gold-100">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="heading-font text-3xl font-bold mb-4 text-brown-800">Join Our Luxe Circle</h2>
+            <p class="text-brown-600 mb-6">Subscribe to receive exclusive offers, new product announcements, and beauty tips.</p>
+            
+            <form class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded border border-brown-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                <button type="submit" class="bg-brown-800 hover:bg-black text-white font-bold py-3 px-6 rounded transition">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gold-400 py-12 px-4">
+        <div class="container mx-auto">
+            <div class="md:flex justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="https://via.placeholder.com/50x50" alt="ARIIELUXE Logo" class="h-10 w-10 rounded-full border border-gold-500" id="footer-logo">
+                        <h3 class="heading-font text-2xl font-bold">ARIIELUXE</h3>
+                    </div>
+                    <p class="max-w-xs">Luxury beauty products and services for those who appreciate the finer things in life.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold text-white mb-4">Shop</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition">Makeup</a></li>
+                            <li><a href="#" class="hover:text-white transition">Perfumes</a></li>
+                            <li><a href="#" class="hover:text-white transition">Skincare</a></li>
+                            <li><a href="#" class="hover:text-white transition">Bestsellers</a></li>
+                            <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-white mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition">Makeup Sessions</a></li>
+                            <li><a href="#" class="hover:text-white transition">Fragrance Consultation</a></li>
+                            <li><a href="#" class="hover:text-white transition">Personal Shopping</a></li>
+                            <li><a href="#" class="hover:text-white transition">Gift Cards</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-white mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                            <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-brown-900 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2023 ARIIELUXE. All rights reserved.</p>
+                
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-xl hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-xl hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-xl hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-xl hover:text-white transition"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('header button.md\\:hidden').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Order tracking form submission
+        document.querySelector('.tracking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('tracking-results').classList.remove('hidden');
+        });
+        
+        // Logo changer - you can replace this with your actual logo upload logic
+        function changeLogo(newLogoUrl) {
+            document.getElementById('company-logo').src = newLogoUrl;
+            document.getElementById('footer-logo').src = newLogoUrl;
+        }
+        
+        // Calendly booking button
+        document.getElementById('calendly-btn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const sessionType = document.getElementById('session-type').value;
+            const location = document.getElementById('location').value;
+            const notes = document.getElementById('notes').value;
+            
+            if (!name || !email || !phone || !sessionType || !location) {
+                alert('Please fill in all required fields before booking');
+                return;
+            }
+            
+            // Show Calendly widget
+            document.getElementById('booking-instructions').classList.add('hidden');
+            document.getElementById('calendly-widget').classList.remove('hidden');
+            
+            // In a real implementation, you would pass these details to Calendly
+            // For example:
+            // Calendly.initPopupWidget({
+            //     url: 'https://calendly.com/your-ariieluxe-booking',
+            //     prefill: {
+            //         name: name,
+            //         email: email,
+            //         customAnswers: {
+            //             a1: phone,
+            //             a2: sessionType,
+            //             a3: location,
+            //             a4: notes
+            //         }
+            //     }
+            // });
+        });
+        
+        // Example of how to change the logo
+        // changeLogo('path-to-your-new-logo.jpg');
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=AccentH/ari" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>

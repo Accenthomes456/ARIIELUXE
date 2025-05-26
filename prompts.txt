@@ -1,0 +1,2 @@
+Create an interesting e-commerce website for a make-up and perfumes (male and female) make the page a blending combination of brown, black and gold. give the website a tracking section for purchased peoducts and also a section for booking make-up sessions. Use magazine layout for the website and the company's name is ARIIELUXE put a logo that i can change at the side of the company name which i can change.
+make the product pricing in Naira and also add a slot to book date and time through calendly.com at the book a makeup seesion
