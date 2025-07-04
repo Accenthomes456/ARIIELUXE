@@ -166,22 +166,61 @@
             
             <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- Product 1 -->
-                <div class="product-card group bg-white rounded-lg overflow-hidden shadow-lg relative">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80');"></div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-xl font-bold text-brown-800">Noir Essence</h3>
-                            <span class="bg-gold-100 text-gold-800 text-xs font-bold px-2 py-1 rounded">Men</span>
-                        </div>
-                        <p class="text-brown-600 text-sm mb-4">A bold, woody fragrance with hints of leather and spice</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gold-600 font-bold">₦75,000</span>
-                            <button onclick="addToCart('Luxury Perfume', 35000)" class="bg-black text-white px-4 py-2 rounded">Add to Cart</button>
-                        </div>
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative" id="card-noir">
+                  <!-- Static image (default) -->
+                  <div class="h-64 bg-cover bg-center" style="background-image: url('images/noir1.jpg');"></div>
+                
+                  <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                      <h3 class="text-xl font-bold text-brown-800">Noir Essence</h3>
+                      <span class="bg-gold-100 text-gold-800 text-xs font-bold px-2 py-1 rounded">Men</span>
                     </div>
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 z-10">
-                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                
+                    <p class="text-brown-600 text-sm mb-2">A bold, woody fragrance infused with leather and spice.</p>
+                
+                    <!-- View Details Toggle -->
+                    <button onclick="toggleDetails('details-noir')" class="text-sm text-gold-700 hover:underline mb-4">View Details</button>
+                
+                    <!-- Expandable Details Section -->
+                    <div class="hidden" id="details-noir">
+                      <!-- Image Slider -->
+                      <div class="relative w-full h-64 mb-4">
+                        <div class="overflow-hidden rounded-lg">
+                          <div class="flex transition-transform duration-500 ease-in-out" id="slider-noir">
+                            <img src="images/noir1.jpg" class="w-full flex-shrink-0" />
+                            <img src="images/noir2.jpg" class="w-full flex-shrink-0" />
+                            <img src="images/noir3.jpg" class="w-full flex-shrink-0" />
+                          </div>
+                        </div>
+                        <!-- Controls -->
+                        <div class="flex justify-center space-x-2 mt-2">
+                          <button onclick="slideTo('slider-noir', 0)" class="w-3 h-3 bg-gold-600 rounded-full"></button>
+                          <button onclick="slideTo('slider-noir', 1)" class="w-3 h-3 bg-gray-300 rounded-full"></button>
+                          <button onclick="slideTo('slider-noir', 2)" class="w-3 h-3 bg-gray-300 rounded-full"></button>
+                        </div>
+                      </div>
+                
+                      <!-- Size -->
+                      <label class="block text-sm text-brown-700 mb-1">Select Size:</label>
+                      <select onchange="updatePrice(this, 'price-noir')" class="w-full mb-3 px-3 py-2 border rounded text-sm" id="size-noir">
+                        <option value="30:45000">30ml - ₦45,000</option>
+                        <option value="50:60000" selected>50ml - ₦60,000</option>
+                        <option value="100:75000">100ml - ₦75,000</option>
+                      </select>
+                
+                      <!-- Quantity -->
+                      <label class="block text-sm text-brown-700 mb-1">Quantity:</label>
+                      <input type="number" min="1" value="1" id="qty-noir" class="w-full mb-4 px-3 py-2 border rounded text-sm" />
+                
+                      <!-- Price + Cart -->
+                      <div class="flex justify-between items-center mb-2">
+                        <span class="text-gold-600 font-bold" id="price-noir">₦60,000</span>
+                        <button onclick="addToCartWithSize('Noir Essence', 'size-noir', 'qty-noir')" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+                          Add to Cart
+                        </button>
+                      </div>
                     </div>
+                  </div>
                 </div>
                 
                 <!-- Product 2 -->
@@ -572,17 +611,42 @@
             document.getElementById('footer-logo').src = newLogoUrl;
         }
         
-        function addToCart(name, price) {
-          const cart = JSON.parse(localStorage.getItem("cart")) || [];
-          const index = cart.findIndex(item => item.name === name);
-          if (index > -1) {
-            cart[index].qty += 1;
-          } else {
-            cart.push({ name, price, qty: 1 });
-          }
-          localStorage.setItem("cart", JSON.stringify(cart));
-          window.location.href = "cart.html"; // redirect to cart
-        }
+            function toggleDetails(id) {
+              document.getElementById(id).classList.toggle("hidden");
+            }
+            
+            function updatePrice(selectEl, priceId) {
+              const price = selectEl.value.split(":")[1];
+              document.getElementById(priceId).innerText = `₦${Number(price).toLocaleString()}`;
+            }
+            
+            function addToCartWithSize(productName, sizeSelectId, qtyInputId) {
+              const sizeSelect = document.getElementById(sizeSelectId);
+              const qtyInput = document.getElementById(qtyInputId);
+              const [size, price] = sizeSelect.value.split(":");
+              const qty = parseInt(qtyInput.value);
+            
+              if (qty < 1) return alert("Please enter a valid quantity");
+            
+              const cart = JSON.parse(localStorage.getItem("cart")) || [];
+              const id = `${productName}-${size}`;
+              const index = cart.findIndex(item => item.id === id);
+            
+              if (index > -1) {
+                cart[index].qty += qty;
+              } else {
+                cart.push({ id, name: productName, size: size + "ml", price: Number(price), qty });
+              }
+            
+              localStorage.setItem("cart", JSON.stringify(cart));
+              window.location.href = "cart.html";
+            }
+            
+            function slideTo(sliderId, index) {
+              const slider = document.getElementById(sliderId);
+              const width = slider.clientWidth;
+              slider.style.transform = `translateX(-${index * 100}%)`;
+            }
         
         // Calendly booking button
         document.getElementById('calendly-btn').addEventListener('click', function() {
