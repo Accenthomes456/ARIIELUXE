@@ -176,7 +176,7 @@
                         <p class="text-brown-600 text-sm mb-4">A bold, woody fragrance with hints of leather and spice</p>
                         <div class="flex justify-between items-center">
                             <span class="text-gold-600 font-bold">₦75,000</span>
-                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                            <button onclick="addToCart('Luxury Perfume', 35000)" class="bg-black text-white px-4 py-2 rounded">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
@@ -195,7 +195,7 @@
                         <p class="text-brown-600 text-sm mb-4">18 highly pigmented shades for day to night looks</p>
                         <div class="flex justify-between items-center">
                             <span class="text-gold-600 font-bold">₦55,000</span>
-                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                            <button onclick="addToCart('Luxury Perfume', 55000)" class="bg-black text-white px-4 py-2 rounded">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
@@ -214,7 +214,7 @@
                         <p class="text-brown-600 text-sm mb-4">A luxurious blend of oud, amber, and vanilla notes</p>
                         <div class="flex justify-between items-center">
                             <span class="text-gold-600 font-bold">₦120,000</span>
-                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                            <button onclick="addToCart('Luxury Perfume', 25000)" class="bg-black text-white px-4 py-2 rounded">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
@@ -233,7 +233,7 @@
                         <p class="text-brown-600 text-sm mb-4">Long-lasting, highly pigmented matte lipstick</p>
                         <div class="flex justify-between items-center">
                             <span class="text-gold-600 font-bold">₦25,000</span>
-                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                            <button onclick="addToCart('Luxury Perfume', 15000)" class="bg-black text-white px-4 py-2 rounded">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
@@ -252,7 +252,7 @@
                         <p class="text-brown-600 text-sm mb-4">Fresh citrus fragrance with marine notes</p>
                         <div class="flex justify-between items-center">
                             <span class="text-gold-600 font-bold">₦65,000</span>
-                            <button class="bg-black text-gold-400 hover:bg-gold-500 hover:text-black px-4 py-2 rounded-full text-sm transition">Add to Cart</button>
+                            <button onclick="addToCart('Luxury Perfume', 5000)" class="bg-black text-white px-4 py-2 rounded">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
@@ -275,7 +275,7 @@
                         </div>
                     </div>
                     <div class="product-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
-                        <button class="bg-gold-500 text-black font-bold py-2 px-6 rounded-full hover:bg-gold-600 transition">Quick View</button>
+                        <button onclick="addToCart('Luxury Perfume', 45000)" class="bg-black text-white px-4 py-2 rounded">Quick View</button>
                     </div>
                 </div>
             </div>
@@ -570,6 +570,18 @@
         function changeLogo(newLogoUrl) {
             document.getElementById('company-logo').src = newLogoUrl;
             document.getElementById('footer-logo').src = newLogoUrl;
+        }
+        
+        function addToCart(name, price) {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const index = cart.findIndex(item => item.name === name);
+          if (index > -1) {
+            cart[index].qty += 1;
+          } else {
+            cart.push({ name, price, qty: 1 });
+          }
+          localStorage.setItem("cart", JSON.stringify(cart));
+          window.location.href = "cart.html"; // redirect to cart
         }
         
         // Calendly booking button
