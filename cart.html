@@ -22,34 +22,32 @@
 
   <script>
     // 1. INIT EMAILJS
-    window.onload = () => {
-    emailjs.init("NiRJLMwt3DdPDK-K7"); // 👈 Replace with your public key
-
+    emailjs.init("NiRJLMwt3DdPDK-K7");
+  
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartList = document.getElementById("cartItems");
     const totalElem = document.getElementById("total");
-
+  
     let total = 0;
     let summary = "";
     const orderId = "ARIILUXE-" + Date.now();
-
+  
     cart.forEach(item => {
       const li = document.createElement("li");
       li.className = "flex justify-between border-b py-2";
-      li.innerHTML = `<span>${item.name} x${item.qty}</span><span>₦${item.price * item.qty}</span>`;
+      li.innerHTML = `<span>${item.name} (${item.size}) x${item.qty}</span><span>₦${(item.price * item.qty).toLocaleString()}</span>`;
       cartList.appendChild(li);
-      summary += `${item.name} x${item.qty} = ₦${item.price * item.qty}\n`;
+      summary += `${item.name} (${item.size}) x${item.qty} = ₦${(item.price * item.qty).toLocaleString()}\n`;
       total += item.price * item.qty;
     });
-
-    totalElem.textContent = `Total: ₦${total}`;
-    summary += `\nTotal: ₦${total}`;
-
-    // 2. SEND ORDER EMAIL
+  
+    totalElem.textContent = `Total: ₦${total.toLocaleString()}`;
+    summary += `\nTotal: ₦${total.toLocaleString()}`;
+  
     document.getElementById("checkoutForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const customerEmail = document.getElementById("customer_email").value;
-
+  
       emailjs.send("service_rlfnynp", "template_d17uidx", {
         order_id: orderId,
         order_summary: summary,
@@ -58,7 +56,7 @@
       .then(() => {
         alert("✅ Order placed! You'll receive confirmation shortly.");
         localStorage.removeItem("cart");
-        window.location.href = "thank-you.html"; // Optional: redirect
+        window.location.href = "thank-you.html";
       })
       .catch(error => {
         console.error("EmailJS Error:", error);
