@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Cart | ARIILUXE</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body class="bg-gray-100 p-6">
   <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
@@ -19,8 +18,18 @@
     </button>
 
     <!-- Checkout Form -->
-    <form id="checkoutForm" class="space-y-4">
-      <input type="email" id="customer_email" placeholder="Your Email" required class="w-full border p-2 rounded">
+    <form id="checkoutForm" method="POST" action="https://formsubmit.co/your@email.com" class="space-y-4">
+      <input type="text" name="name" id="customer_name" placeholder="Your Full Name" required class="w-full border p-2 rounded">
+      <input type="text" name="phone" id="customer_phone" placeholder="Phone Number" required class="w-full border p-2 rounded">
+      <textarea name="address" id="customer_address" placeholder="Delivery Address" required class="w-full border p-2 rounded"></textarea>
+      <input type="email" name="email" id="customer_email" placeholder="Your Email" required class="w-full border p-2 rounded">
+      <input type="hidden" name="order_id" id="order_id">
+      <input type="hidden" name="order_summary" id="order_summary">
+
+      <!-- Redirect to thank you page -->
+      <input type="hidden" name="_next" value="https://accenthomes456.github.io/thank-you.html">
+      <input type="hidden" name="_captcha" value="false">
+
       <button type="submit" class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
         Place Order
       </button>
@@ -28,8 +37,6 @@
   </div>
 
   <script>
-    emailjs.init("NiRJLMwt3DdPDK-K7"); // Replace with your public key
-
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartList = document.getElementById("cartItems");
     const totalElem = document.getElementById("total");
@@ -72,7 +79,7 @@
       summary += `\nTotal: ₦${total.toLocaleString()}`;
     }
 
-    // Update quantity
+    // Quantity
     function updateQty(index, delta) {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart[index].qty += delta;
@@ -89,7 +96,7 @@
       location.reload();
     }
 
-    // Remove individual item
+    // Remove item
     function removeFromCart(index) {
       if (confirm("Remove this item?")) {
         cart.splice(index, 1);
@@ -98,7 +105,7 @@
       }
     }
 
-    // Clear entire cart
+    // Clear cart
     function clearCart() {
       if (confirm("Clear your entire cart?")) {
         localStorage.removeItem("cart");
@@ -106,25 +113,15 @@
       }
     }
 
-    // Handle order placement
+    // Inject dynamic values before submit
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const customerEmail = document.getElementById("customer_email").value;
+      document.getElementById("order_id").value = orderId;
+      document.getElementById("order_summary").value = summary;
 
-      emailjs.send("service_rlfnynp", "template_d17uidx", {
-        order_id: orderId,
-        order_summary: summary,
-        customer_email: customerEmail
-      })
-      .then(() => {
-        alert("✅ Order placed! You'll receive confirmation shortly.");
+      // Optional: remove cart after short delay (form will redirect)
+      setTimeout(() => {
         localStorage.removeItem("cart");
-        window.location.href = "thank-you.html";
-      })
-      .catch(error => {
-        console.error("EmailJS Error:", error);
-        alert("❌ Failed to send order. Please try again.");
-      });
+      }, 500);
     });
   </script>
 </body>
