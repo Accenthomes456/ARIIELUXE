@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | ARIILUXE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1e1e1e, #0d0d0d);
+      color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glass-card {
+      background: rgba(34, 24, 14, 0.6); /* dark brown with glass effect */
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 215, 0, 0.3); /* gold edge */
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .glow-gold {
+      box-shadow: 0 0 20px #d4af37, 0 0 40px #b8860b;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .animate-bounceIn {
+      animation: bounceIn 1s ease-out forwards;
+    }
+
+    .gold-text {
+      color: #d4af37;
+    }
+
+    .btn-gold {
+      background-color: #d4af37;
+      color: #1e1e1e;
+    }
+
+    .btn-gold:hover {
+      background-color: #b8860b;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+  <div class="glass-card rounded-3xl p-10 max-w-xl text-center animate-bounceIn">
+
+    <!-- Logo -->
+    <img src="Arii.png" alt="ARIILUXE Logo" class="h-20 mx-auto mb-6 glow-gold rounded-full" />
+
+    <!-- Title -->
+    <h1 class="text-3xl font-extrabold mb-4 gold-text">Thank You for Your Order</h1>
+
+    <!-- Message -->
+    <p class="text-lg text-gray-200 mb-3">
+      Your ARIILUXE experience starts now — we truly appreciate your patronage.
+    </p>
+
+    <p class="text-base text-gray-300 mb-6">
+      Expect an email with <span class="gold-text font-medium">payment instructions</span> within <strong>24 hours</strong>.
+      If you have questions, our team is here to help.
+    </p>
+
+    <!-- Button -->
+    <a href="index.html" class="inline-block mt-4 px-6 py-3 rounded-full btn-gold font-semibold shadow-md transition-transform transform hover:scale-105">
+      Return to Home
+    </a>
+
+  </div>
+
+</body>
+</html>
