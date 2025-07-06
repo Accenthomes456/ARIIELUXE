@@ -197,69 +197,69 @@
             
             <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- Product 1 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative" id="card-noir">
-                  <!-- Static image (default) -->
-                  <div class="h-64 bg-cover bg-center" style="background-image: url('images/noir1.jpg');"></div>
-                
-                  <div class="p-6">
-                    <div class="flex justify-between items-start mb-2">
-                      <h3 class="text-xl font-bold text-brown-800">Noir Essence</h3>
-                      <span class="bg-gold-100 text-gold-800 text-xs font-bold px-2 py-1 rounded">Men</span>
-                    </div>
-                
-                    <p class="text-brown-600 text-sm mb-2">A bold, woody fragrance infused with leather and spice.</p>
-                
-                    <!-- View Details Toggle -->
-                    <button onclick="toggleDetails('details-noir')" class="text-sm text-gold-700 hover:underline mb-4">View Details</button>
-                
-                    <!-- Expandable Details Section -->
-                    <div class="hidden" id="details-noir">
-                      <!-- Image Slider -->
-                      <div class="relative w-full h-64 mb-4">
-                        <div class="overflow-hidden rounded-lg">
-                          <div class="flex transition-transform duration-500 ease-in-out" id="slider-noir">
-                            <img src="images/noir1.jpg" class="w-full flex-shrink-0" />
-                            <img src="images/noir2.jpg" class="w-full flex-shrink-0" />
-                            <img src="images/noir3.jpg" class="w-full flex-shrink-0" />
-                          </div>
-                        </div>
-                        <!-- Controls -->
-                        <div class="flex justify-center space-x-2 mt-2">
-                          <button onclick="slideTo('slider-noir', 0)" class="w-3 h-3 bg-gold-600 rounded-full"></button>
-                          <button onclick="slideTo('slider-noir', 1)" class="w-3 h-3 bg-gray-300 rounded-full"></button>
-                          <button onclick="slideTo('slider-noir', 2)" class="w-3 h-3 bg-gray-300 rounded-full"></button>
-                        </div>
+            <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative" id="card-noir">
+              <!-- Static image -->
+              <div class="h-64 bg-cover bg-center" style="background-image: url('images/noir1.jpg');"></div>
+            
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xl font-bold text-brown-800">Noir Essence</h3>
+                  <span class="bg-gold-100 text-gold-800 text-xs font-bold px-2 py-1 rounded">Men</span>
+                </div>
+            
+                <p class="text-brown-600 text-sm mb-2">A bold, woody fragrance infused with leather and spice.</p>
+            
+                <!-- View Details Toggle -->
+                <button onclick="toggleDetails('details-noir')" class="mb-4 px-4 py-2 rounded-full border border-gold-500 text-gold-700 font-semibold hover:bg-gold-500 hover:text-black transition duration-300">
+                  View Details
+                </button>
+            
+                <!-- Expandable Details Section -->
+                <div class="hidden" id="details-noir">
+                  <!-- Image Slider -->
+                  <div class="relative w-full h-64 mb-4">
+                    <div class="overflow-hidden rounded-lg">
+                      <div class="flex transition-transform duration-500 ease-in-out" id="slider-noir">
+                        <img src="images/noir1.jpg" class="w-full flex-shrink-0" />
+                        <img src="images/noir2.jpg" class="w-full flex-shrink-0" />
+                        <img src="images/noir3.jpg" class="w-full flex-shrink-0" />
                       </div>
-                
-                      <!-- Size -->
-                      <label class="block text-sm text-brown-700 mb-1">Select Size:</label>
-                      <select onchange="updatePrice(this, 'price-noir')" class="w-full mb-3 px-3 py-2 border rounded text-sm" id="size-noir">
-                        <option value="30:45000">30ml - ₦45,000</option>
-                        <option value="50:60000" selected>50ml - ₦60,000</option>
-                        <option value="100:75000">100ml - ₦75,000</option>
-                      </select>
-                
-                      <!-- Quantity -->
-                      <label class="block text-sm text-brown-700 mb-1">Quantity:</label>
-                      <input type="number" min="1" value="1" id="qty-noir" class="w-full mb-4 px-3 py-2 border rounded text-sm" />
-                
-                      <!-- Price + Cart -->
-                        <div class="mb-4">
-                          <div class="text-gold-600 font-bold text-lg mb-2" id="price-noir">₦60,000</div>
-                        
-                          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                            <!-- Quantity -->
-                            <input type="number" min="1" value="1" id="qty-noir" class="border p-2 rounded w-full sm:w-1/3" />
-                        
-                            <!-- Add to Cart Button -->
-                            <button onclick="addToCartWithSize('Noir Essence', 'size-noir', 'qty-noir')" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition w-full sm:w-auto">
-                              Add to Cart
-                            </button>
-                          </div>
-                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-2 mt-2">
+                      <button onclick="slideTo('slider-noir', 0)" class="w-3 h-3 bg-gold-600 rounded-full"></button>
+                      <button onclick="slideTo('slider-noir', 1)" class="w-3 h-3 bg-gray-300 rounded-full"></button>
+                      <button onclick="slideTo('slider-noir', 2)" class="w-3 h-3 bg-gray-300 rounded-full"></button>
+                    </div>
+                  </div>
+            
+                  <!-- Size Select -->
+                  <div class="mb-3">
+                    <label class="block text-sm text-brown-700 mb-1">Select Size:</label>
+                    <select onchange="updatePrice(this, 'price-noir')" class="w-full px-3 py-2 border rounded text-sm" id="size-noir">
+                      <option value="30:45000">30ml - ₦45,000</option>
+                      <option value="50:60000" selected>50ml - ₦60,000</option>
+                      <option value="100:75000">100ml - ₦75,000</option>
+                    </select>
+                  </div>
+            
+                  <!-- Quantity -->
+                  <div class="mb-3">
+                    <label class="block text-sm text-brown-700 mb-1">Quantity:</label>
+                    <input type="number" min="1" value="1" id="qty-noir" class="w-full px-3 py-2 border rounded text-sm" />
+                  </div>
+            
+                  <!-- Price & Cart Button -->
+                  <div class="mb-2">
+                    <div class="text-gold-600 font-bold text-lg mb-3" id="price-noir">₦60,000</div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                      <button onclick="addToCartWithSize('Noir Essence', 'size-noir', 'qty-noir')" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition w-full sm:w-auto">
+                        Add to Cart
+                      </button>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
                 
                 <!-- Product 2 -->
                 <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg relative">
