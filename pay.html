@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment | ARIILUXE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #1c1c1c, #000000);
+        color: #d4af37;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .gold-shadow {
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+      }
+      .gold-border {
+        border-color: #d4af37;
+      }
+      .gold-btn {
+        background-color: #d4af37;
+        color: black;
+      }
+      .gold-btn:hover {
+        background-color: #bfa137;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center">
+    <div class="max-w-xl w-full bg-black/90 p-8 rounded-xl gold-shadow">
+      <div class="text-center mb-6">
+        <img src="logo.png" alt="ARIILUXE Logo" class="mx-auto w-24 h-auto mb-2">
+        <h1 class="text-3xl font-bold tracking-wide">ARIILUXE PAYMENT</h1>
+        <p class="text-sm text-gold-500">Secure your luxury today</p>
+      </div>
+  
+      <form id="paymentForm" class="space-y-4">
+        <input type="text" id="name" placeholder="Full Name" required class="w-full border gold-border p-3 rounded bg-black text-gold-500 placeholder-gold-500" />
+        <input type="email" id="email" placeholder="Email Address" required class="w-full border gold-border p-3 rounded bg-black text-gold-500 placeholder-gold-500" />
+        <input type="hidden" id="amount" />
+  
+        <div class="text-right">
+          <button type="submit" class="gold-btn px-6 py-3 rounded-full font-semibold transition duration-300">Pay Now</button>
+        </div>
+      </form>
+    </div>
+  
+    <script>
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      document.getElementById("amount").value = total * 100; // Convert to kobo for Paystack
+  
+      const paymentForm = document.getElementById("paymentForm");
+      paymentForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+  
+        let handler = PaystackPop.setup({
+          key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Replace with your Paystack public key
+          email: document.getElementById("email").value,
+          amount: parseInt(document.getElementById("amount").value),
+          currency: "NGN",
+          metadata: {
+            custom_fields: [
+              {
+                display_name: "Customer Name",
+                variable_name: "customer_name",
+                value: document.getElementById("name").value
+              }
+            ]
+          },
+          callback: function(response) {
+            alert('✅ Payment successful. Reference: ' + response.reference);
+            localStorage.removeItem("cart");
+            window.location.href = "thank-you.html";
+          },
+          onClose: function() {
+            alert('❌ Payment window closed.');
+          }
+        });
+  
+        handler.openIframe();
+      });
+    </script>
+  </body>
+</html>
