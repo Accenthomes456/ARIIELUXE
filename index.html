@@ -15,6 +15,12 @@
             color: #333;
         }
         
+        background: radial-gradient(circle at top, #fffdf5, #f0eee8);
+        }
+        .bg-gold-500 {
+          background-color: #d4af37;
+        }
+        
         .heading-font {
             font-family: 'Playfair Display', serif;
         }
@@ -620,108 +626,109 @@
     </footer>
 
     <script>
-            function showToast(message) {
-              const toast = document.getElementById('toast');
-              toast.textContent = message;
-              toast.classList.remove('opacity-0');
-              toast.classList.add('opacity-100');
-              setTimeout(() => {
-                toast.classList.add('opacity-0');
-              }, 2500);
-            }
-        
-            function updateCartBadge() {
-              const cart = JSON.parse(localStorage.getItem("cart")) || [];
-              const count = cart.reduce((sum, item) => sum + item.qty, 0);
-              const badge1 = document.getElementById("cart-badge");
-              if (badge1) badge1.innerText = count;
-              document.getElementById("floatingCartBadge").innerText = count;
-              renderCartPreview();
-            }
-        
-            function addToCartWithSize(productName, sizeSelectId, qtyInputId) {
-              const sizeSelect = document.getElementById(sizeSelectId);
-              const qtyInput = document.getElementById(qtyInputId);
-              const [size, price] = sizeSelect.value.split(":");
-              const qty = parseInt(qtyInput.value);
-              if (qty < 1) return showToast("❗ Invalid quantity");
-        
-              const cart = JSON.parse(localStorage.getItem("cart")) || [];
-              const id = `${productName}-${size}`;
-              const index = cart.findIndex(item => item.id === id);
-              if (index > -1) {
-                cart[index].qty += qty;
-              } else {
-                cart.push({ id: id, name: productName, size: size + "ml", price: Number(price), qty: qty });
-              }
-        
-              localStorage.setItem("cart", JSON.stringify(cart));
-              updateCartBadge();
-              showToast("✅ Added to cart!");
-            }
-        
-            function addToCart(name, price) {
-              const cart = JSON.parse(localStorage.getItem("cart")) || [];
-              const id = `${name}-default`;
-              const index = cart.findIndex(item => item.id === id);
-              if (index > -1) {
-                cart[index].qty += 1;
-              } else {
-                cart.push({ id: id, name: name, size: "Standard", price: price, qty: 1 });
-              }
-        
-              localStorage.setItem("cart", JSON.stringify(cart));
-              updateCartBadge();
-              showToast("✅ Added to cart!");
-            }
-        
-            function toggleCartPreview() {
-              document.getElementById('cartPreview').classList.toggle('hidden');
-            }
-        
-            function renderCartPreview() {
-              const cart = JSON.parse(localStorage.getItem("cart")) || [];
-              const list = document.getElementById("previewItems");
-              list.innerHTML = "";
-        
-              if (cart.length === 0) {
-                list.innerHTML = `<li class="text-gray-500 text-center">Your cart is empty.</li>`;
-                return;
-              }
-        
-              cart.forEach((item, index) => {
-                const li = document.createElement("li");
-                li.className = "flex justify-between items-center border-b pb-2";
-                li.innerHTML = `
-                  <div>
-                    <p class="font-semibold">${item.name} (${item.size})</p>
-                    <p>₦${(item.price * item.qty).toLocaleString()} <span class="text-xs">x${item.qty}</span></p>
-                  </div>
-                  <button onclick="removeItem(${index})" class="text-red-500 hover:text-red-700 text-sm">❌</button>
-                `;
-                list.appendChild(li);
-              });
-            }
-        
-            function removeItem(index) {
-              const cart = JSON.parse(localStorage.getItem("cart")) || [];
-              if (cart[index]) {
-                cart.splice(index, 1);
-                localStorage.setItem("cart", JSON.stringify(cart));
-                updateCartBadge();
-                showToast("🗑️ Item removed");
-              }
-            }
-        
-            function clearCart() {
-              if (confirm("Clear your entire cart?")) {
-                localStorage.removeItem("cart");
-                updateCartBadge();
-                showToast("🧹 Cart cleared");
-              }
-            }
-        
-            window.onload = updateCartBadge;
+        function showToast(message) {
+          const toast = document.getElementById('toast');
+          toast.textContent = message;
+          toast.classList.remove('opacity-0');
+          toast.classList.add('opacity-100');
+          setTimeout(() => {
+            toast.classList.add('opacity-0');
+          }, 2000); // 2-second duration
+        }
+    
+        function updateCartBadge() {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const count = cart.reduce((sum, item) => sum + item.qty, 0);
+          const badge1 = document.getElementById("cart-badge");
+          if (badge1) badge1.innerText = count;
+          document.getElementById("floatingCartBadge").innerText = count;
+          renderCartPreview();
+        }
+    
+        function addToCartWithSize(productName, sizeSelectId, qtyInputId) {
+          const sizeSelect = document.getElementById(sizeSelectId);
+          const qtyInput = document.getElementById(qtyInputId);
+          const [size, price] = sizeSelect.value.split(":");
+          const qty = parseInt(qtyInput.value);
+          if (qty < 1) return showToast("❗ Invalid quantity");
+    
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const id = `${productName}-${size}`;
+          const index = cart.findIndex(item => item.id === id);
+          if (index > -1) {
+            cart[index].qty += qty;
+          } else {
+            cart.push({ id: id, name: productName, size: size + "ml", price: Number(price), qty: qty });
+          }
+    
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartBadge();
+          showToast("✅ Added to cart!");
+        }
+    
+        function addToCart(name, price) {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const id = `${name}-default`;
+          const index = cart.findIndex(item => item.id === id);
+          if (index > -1) {
+            cart[index].qty += 1;
+          } else {
+            cart.push({ id: id, name: name, size: "Standard", price: price, qty: 1 });
+          }
+    
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartBadge();
+          showToast("✅ Added to cart!");
+        }
+    
+        function toggleCartPreview() {
+          const cartPreview = document.getElementById('cartPreview');
+          cartPreview.classList.toggle('hidden');
+        }
+    
+        function renderCartPreview() {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const list = document.getElementById("previewItems");
+          list.innerHTML = "";
+    
+          if (cart.length === 0) {
+            list.innerHTML = `<li class="text-gray-500 text-center">Your cart is empty.</li>`;
+            return;
+          }
+    
+          cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.className = "flex justify-between items-center border-b pb-2";
+            li.innerHTML = `
+              <div>
+                <p class="font-semibold">${item.name} (${item.size})</p>
+                <p>₦${(item.price * item.qty).toLocaleString()} <span class="text-xs">x${item.qty}</span></p>
+              </div>
+              <button onclick="removeItem(${index})" class="text-red-500 hover:text-red-700 text-sm">❌</button>
+            `;
+            list.appendChild(li);
+          });
+        }
+    
+        function removeItem(index) {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          if (cart[index]) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartBadge();
+            showToast("🗑️ Item removed");
+          }
+        }
+    
+        function clearCart() {
+          if (confirm("Clear your entire cart?")) {
+            localStorage.removeItem("cart");
+            updateCartBadge();
+            showToast("🧹 Cart cleared");
+          }
+        }
+    
+        window.onload = updateCartBadge;
   
         // Mobile menu toggle
         document.querySelector('header button.md\\:hidden').addEventListener('click', function() {
