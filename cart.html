@@ -1,128 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Cart | ARIILUXE</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 p-6">
-  <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
-    <h1 class="text-2xl font-bold mb-4">Your Cart</h1>
-
-    <ul id="cartItems" class="mb-4 space-y-4"></ul>
-    <p id="total" class="text-right font-semibold mb-4"></p>
-
-    <!-- Clear All Button -->
-    <button onclick="clearCart()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition mb-6">
-      Clear All
-    </button>
-
-    <!-- Checkout Form -->
-    <form id="checkoutForm" method="POST" action="https://formsubmit.co/domacassy@gmail.com" class="space-y-4">
-      <input type="text" name="name" id="customer_name" placeholder="Your Full Name" required class="w-full border p-2 rounded">
-      <input type="text" name="phone" id="customer_phone" placeholder="Phone Number" required class="w-full border p-2 rounded">
-      <textarea name="address" id="customer_address" placeholder="Delivery Address" required class="w-full border p-2 rounded"></textarea>
-      <input type="email" name="email" id="customer_email" placeholder="Your Email" required class="w-full border p-2 rounded">
-      <input type="hidden" name="order_id" id="order_id">
-      <input type="hidden" name="order_summary" id="order_summary">
-
-      <!-- Redirect to thank you page -->
-      <input type="hidden" name="_next" value="https://accenthomes456.github.io/ARIIELUXE/thanks.html">
-      <input type="hidden" name="_captcha" value="false">
-
-      <button type="submit" class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
-        Place Order
+  <head>
+    <meta charset="UTF-8">
+    <title>Cart | ARIILUXE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+      <h1 class="text-2xl font-bold mb-4">Your Cart</h1>
+  
+      <ul id="cartItems" class="mb-4 space-y-4"></ul>
+      <p id="total" class="text-right font-semibold mb-4"></p>
+  
+      <!-- Clear All Button -->
+      <button onclick="clearCart()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition mb-6">
+        Clear All
       </button>
-    </form>
-  </div>
-
-  <script>
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartList = document.getElementById("cartItems");
-    const totalElem = document.getElementById("total");
-    const form = document.getElementById("checkoutForm");
-
-    let total = 0;
-    let summary = "";
-    const orderId = "ARIILUXE-" + Date.now();
-
-    if (cart.length === 0) {
-      cartList.innerHTML = "<li class='text-gray-500'>Your cart is empty.</li>";
-      totalElem.textContent = "Total: ₦0";
-      form.style.display = "none";
-    } else {
-      cart.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.className = "flex justify-between items-center border-b pb-4";
-
-        li.innerHTML = `
-          <div class="flex flex-col">
-            <span class="font-medium">${item.name} (${item.size})</span>
-            <div class="flex items-center gap-2 mt-1">
-              <button onclick="updateQty(${index}, -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
-              <span>${item.qty}</span>
-              <button onclick="updateQty(${index}, 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="font-bold text-gold-600">₦${(item.price * item.qty).toLocaleString()}</span>
-            <button onclick="removeFromCart(${index})" class="text-red-500 hover:underline text-sm">Delete</button>
-          </div>
-        `;
-
-        cartList.appendChild(li);
-        total += item.price * item.qty;
-        summary += `${item.name} (${item.size}) x${item.qty} = ₦${(item.price * item.qty).toLocaleString()}\n`;
-      });
-
-      totalElem.textContent = `Total: ₦${total.toLocaleString()}`;
-      summary += `\nTotal: ₦${total.toLocaleString()}`;
-    }
-
-    // Quantity
-    function updateQty(index, delta) {
+  
+      <!-- Checkout Form -->
+      <form id="checkoutForm" method="POST" action="https://formsubmit.co/domacassy@gmail.com" class="space-y-4">
+        <input type="text" name="name" id="customer_name" placeholder="Your Full Name" required class="w-full border p-2 rounded">
+        <input type="text" name="phone" id="customer_phone" placeholder="Phone Number" required class="w-full border p-2 rounded">
+        <textarea name="address" id="customer_address" placeholder="Delivery Address" required class="w-full border p-2 rounded"></textarea>
+        <input type="email" name="email" id="customer_email" placeholder="Your Email" required class="w-full border p-2 rounded">
+        <input type="hidden" name="order_id" id="order_id">
+        <input type="hidden" name="order_summary" id="order_summary">
+  
+        <!-- Redirect to thank you page -->
+        <input type="hidden" name="_next" value="https://accenthomes456.github.io/ARIIELUXE/thanks.html">
+        <input type="hidden" name="_captcha" value="false">
+  
+        <button type="submit" class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
+          Place Order
+        </button>
+      </form>
+    </div>
+  
+    <script>
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart[index].qty += delta;
-
-      if (cart[index].qty <= 0) {
-        if (confirm("Remove this item?")) {
-          cart.splice(index, 1);
-        } else {
-          cart[index].qty = 1;
-        }
+      const cartList = document.getElementById("cartItems");
+      const totalElem = document.getElementById("total");
+      const form = document.getElementById("checkoutForm");
+  
+      let total = 0;
+      let summary = "";
+      const orderId = "ARIILUXE-" + Date.now();
+  
+      if (cart.length === 0) {
+        cartList.innerHTML = "<li class='text-gray-500'>Your cart is empty.</li>";
+        totalElem.textContent = "Total: ₦0";
+        form.style.display = "none";
+      } else {
+        cart.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.className = "flex justify-between items-center border-b pb-4";
+  
+          li.innerHTML = `
+            <div class="flex flex-col">
+              <span class="font-medium">${item.name} (${item.size})</span>
+              <div class="flex items-center gap-2 mt-1">
+                <button onclick="updateQty(${index}, -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">−</button>
+                <span>${item.qty}</span>
+                <button onclick="updateQty(${index}, 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-bold text-gold-600">₦${(item.price * item.qty).toLocaleString()}</span>
+              <button onclick="removeFromCart(${index})" class="text-red-500 hover:underline text-sm">Delete</button>
+            </div>
+          `;
+  
+          cartList.appendChild(li);
+          total += item.price * item.qty;
+          summary += `${item.name} (${item.size}) x${item.qty} = ₦${(item.price * item.qty).toLocaleString()}\n`;
+        });
+  
+        totalElem.textContent = `Total: ₦${total.toLocaleString()}`;
+        summary += `\nTotal: ₦${total.toLocaleString()}`;
       }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      location.reload();
-    }
-
-    // Remove item
-    function removeFromCart(index) {
-      if (confirm("Remove this item?")) {
-        cart.splice(index, 1);
+  
+      // Quantity
+      function updateQty(index, delta) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart[index].qty += delta;
+  
+        if (cart[index].qty <= 0) {
+          if (confirm("Remove this item?")) {
+            cart.splice(index, 1);
+          } else {
+            cart[index].qty = 1;
+          }
+        }
+  
         localStorage.setItem("cart", JSON.stringify(cart));
         location.reload();
       }
-    }
-
-    // Clear cart
-    function clearCart() {
-      if (confirm("Clear your entire cart?")) {
-        localStorage.removeItem("cart");
-        location.reload();
+  
+      // Remove item
+      function removeFromCart(index) {
+        if (confirm("Remove this item?")) {
+          cart.splice(index, 1);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          location.reload();
+        }
       }
-    }
-
-    // Inject dynamic values before submit
-    form.addEventListener("submit", function (e) {
-      document.getElementById("order_id").value = orderId;
-      document.getElementById("order_summary").value = summary;
-
-      // Optional: remove cart after short delay (form will redirect)
-      setTimeout(() => {
-        localStorage.removeItem("cart");
-      }, 500);
-    });
-  </script>
-</body>
+  
+      // Clear cart
+      function clearCart() {
+        if (confirm("Clear your entire cart?")) {
+          localStorage.removeItem("cart");
+          location.reload();
+        }
+      }
+  
+      // Inject dynamic values before submit
+      form.addEventListener("submit", function (e) {
+        document.getElementById("order_id").value = orderId;
+        document.getElementById("order_summary").value = summary;
+  
+        // Optional: remove cart after short delay (form will redirect)
+        setTimeout(() => {
+          localStorage.removeItem("cart");
+        }, 500);
+      });
+    </script>
+  </body>
 </html>
