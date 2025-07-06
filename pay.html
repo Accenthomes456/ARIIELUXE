@@ -30,7 +30,7 @@
   <body class="min-h-screen flex items-center justify-center">
     <div class="max-w-xl w-full bg-black/90 p-8 rounded-xl gold-shadow">
       <div class="text-center mb-6">
-        <img src="logo.png" alt="ARIILUXE Logo" class="mx-auto w-24 h-auto mb-2">
+        <img src="Arii.png" alt="ARIILUXE Logo" class="mx-auto w-24 h-auto mb-2">
         <h1 class="text-3xl font-bold tracking-wide">ARIILUXE PAYMENT</h1>
         <p class="text-sm text-gold-500">Secure your luxury today</p>
       </div>
@@ -72,7 +72,7 @@
           callback: function(response) {
             alert('✅ Payment successful. Reference: ' + response.reference);
             localStorage.removeItem("cart");
-            window.location.href = "thank-you.html";
+            window.location.href = "thanks.html";
           },
           onClose: function() {
             alert('❌ Payment window closed.');
